@@ -3,17 +3,16 @@ const argumentos = process.argv.slice(2)
 const fetchData = async (method, endpoint, options = null) => {
     let response = null
 
-    if (method == "GET" || method == "DELETE") {
+    if (method == "GET") {
         response = await fetch(`https://fakestoreapi.com/${endpoint}`)
     } else {
         response = await fetch(`https://fakestoreapi.com/${endpoint}`, options)
     }
 
-    const data = await response.json()
-    return data
+    return await response.json()
 }
 
-const showMessage = (method,endpoint, response) => console.log(`Response ${method} ${endpoint}`, response)
+const showMessage = (method, endpoint, response) => console.log(`Response ${method} ${endpoint}`, response)
 
 const sendRequest = async (method, endpoint, dataBody) => {
     let response = null
@@ -33,9 +32,15 @@ const sendRequest = async (method, endpoint, dataBody) => {
         response = await fetchData(method, endpoint, options)
         showMessage(method, endpoint, response)
     } else {
-        response = await fetchData(method, endpoint)
+        let options = null
+
+        if (method == "DELETE") {
+            options = { method: method }
+        }
+
+        response = await fetchData(method, endpoint, options)
         showMessage(method, endpoint, response)
-    }    
+    }
 }
 
 sendRequest(argumentos[0], argumentos[1], argumentos.slice(2))
