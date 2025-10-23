@@ -4,14 +4,14 @@ Este proyecto permite realizar consultas a la [FakeStore API](https://fakestorea
 
 Las consultas se realizan mediante comandos de npm:
 
-# Obtener todos los productos
+## Obtener todos los productos
 npm run start GET products
 
-# Obtener un producto específico
-npm run start GET products/<id>
+## Obtener un producto específico
+npm run start GET products/id
 
-# Crear un nuevo producto
-npm run start POST products "<nombreProducto>" <cantidadProducto> "<categoriaProducto>"
+## Crear un nuevo producto
+npm run start POST products nombreProducto cantidadProducto categoriaProducto
 
-# Eliminar un producto
-npm run start DELETE products/<id>
+## Eliminar un producto
+npm run start DELETE products/id
