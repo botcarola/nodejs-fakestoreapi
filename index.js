@@ -12,7 +12,13 @@ const fetchData = async (method, endpoint, options = null) => {
     return await response.json()
 }
 
-const showMessage = (method, endpoint, response) => console.log(`Response ${method} ${endpoint}`, response)
+const showMessage = (method, endpoint, response, options = null) => {
+    console.log("=== SOLICITUD ===")
+    console.log("Método:", method)
+    console.log("Endpoint:", `https://fakestoreapi.com/${endpoint}`)
+    console.log("Response", response)
+    console.log("Options:", options)
+}
 
 const sendRequest = async (method, endpoint, dataBody) => {
     let response = null
@@ -30,7 +36,7 @@ const sendRequest = async (method, endpoint, dataBody) => {
         }
 
         response = await fetchData(method, endpoint, options)
-        showMessage(method, endpoint, response)
+        showMessage(method, endpoint, response, options)
     } else {
         let options = null
 
@@ -39,7 +45,7 @@ const sendRequest = async (method, endpoint, dataBody) => {
         }
 
         response = await fetchData(method, endpoint, options)
-        showMessage(method, endpoint, response)
+        showMessage(method, endpoint, response, options)
     }
 }
 
